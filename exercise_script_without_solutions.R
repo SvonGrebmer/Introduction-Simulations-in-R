@@ -7,7 +7,7 @@
 
 #~~~~~~~~~ Random Numbers Generators and sampling theory -----
 
-# sample 
+# sample
 
 ## x is a sequence
 x <- 1:10
@@ -26,32 +26,40 @@ sample(x, size = 6, replace = TRUE)
 
 # YOUR TURN: generate random numbers
 ## Sample 100 values between 3 and 103 with replacement
-
+x <- c(3:103)
+x
+sample(x, size = 100, replace = TRUE)
 
 
 # random number generator drawing from specific distributions
 
-?runif  # runif(n, min, max) 
-?rpois  # rpois(n, lambda) 
-?rnorm  # rnorm(n, mean, sd) 
-?rbinom # rbinom(n, prob)	
+?runif  # runif(n, min, max)
+?rpois  # rpois(n, lambda)
+?rnorm  # rnorm(n, mean, sd)
+?rbinom # rbinom(n, prob)
 
 # YOUR TURN: generate random numbers
 ## Draw 100 values from a normal distribution with a mean of 0 and a sd of 1
+#runif(n, min, max) draws n values from a uniform distribution with the specified min and max.
+#rpois(n, lambda) draws n values from a Poisson distribution with the specified lambda.
+#rnorm(n, mean, sd) draws n values from a normal distribution with the specified mean and standard deviation sd.
+#rbinom(n, prob) draws n values from a binomial distribution with the specified probability prob.
 
+rnorm(n = 100, mean = 0, sd = 1)
 
 ## Draw 50 values from a normal distribution with a mean of 10 and sd of 5
 
+rnorm(n = 50, mean = 10, sd = 5)
 
 ## Draw 1000 values from a poisson distribution with a lambda of 50
+rpois(n = 1000, lambda = 50)
 
 
 ## Draw 30 values from a uniform distribution between 0 and 10
 
+runif(n = 30, min = 0, max = 10)
 
-
-
-# repeat 
+# repeat
 
 ?replicate # replicate(n, expression)
 rnorm(10)
@@ -61,10 +69,10 @@ replicate(10, mean(rnorm(100)))
 hist(replicate(10, mean(rnorm(100))))
 
 # YOUR TURN: generate random numbers, repeat, and plot
-## Replicate 1000 times the mean of 10 values drawn from a uniform distribution between 0 and 10  
+## Replicate 1000 times the mean of 10 values drawn from a uniform distribution between 0 and 10
 
 
-## Replicate 100 times the mean of 50 values drawn from a normal distribution of mean 10 and standard deviation 5  
+## Replicate 100 times the mean of 50 values drawn from a normal distribution of mean 10 and standard deviation 5
 
 
 
@@ -92,10 +100,10 @@ abline(v = mean(x), col = "blue", lwd = 2)
 par(xpd = TRUE) # turn off clipping of legend
 # where a function has a long list of arguments, we can put them on a new line each
 legend(
-  0.9, 
-  y = 1.5, 
-  legend = c("mean(x)", "0"), 
-  lty = c(1, 2), 
+  0.9,
+  y = 1.5,
+  legend = c("mean(x)", "0"),
+  lty = c(1, 2),
   col = c("blue","red")
 )
 
@@ -163,7 +171,7 @@ abline(v = 1, col = "red", lty = 2, lwd = 2)
 ## AwesomeFunctionName <- function(argument1, argument2,…){
 ##                                                         do stuff here
 ##                                                        }
-## The last thing that appears in the 'do stuff here' section is the function's 
+## The last thing that appears in the 'do stuff here' section is the function's
 ## "return value"
 
 # YOUR TURN: write a function that takes input "nrep", replicates '(mean(rnorm(100)))'
@@ -179,15 +187,15 @@ abline(v = 1, col = "red", lty = 2, lwd = 2)
 
 #~~~~~~~~~ Simulating no effect and check alpha -----
 
-# YOUR TURN: draw from the same normal distribution twice 
+# YOUR TURN: draw from the same normal distribution twice
 ## and see if the sample differ from each other
 ## will they differ significantly in 5% of the nrep?
-### Figure out how to do a t.test in R  
-### Generate two vectors of 10 values drawn from N(0,1) and compare them with a t test  
+### Figure out how to do a t.test in R
+### Generate two vectors of 10 values drawn from N(0,1) and compare them with a t test
 ### Figure out how to extract the p-value from that object (HINT use `str` or `names`)
-### Write a function simT that generates two vectors of n random normals, compare them with a t test and return the p-value  
+### Write a function simT that generates two vectors of n random normals, compare them with a t test and return the p-value
 ### Repeat with nrep = 20 and draw a histogram for n = 10
-### Repeat with nrep = 100 and draw a histogram for n = 10    
+### Repeat with nrep = 100 and draw a histogram for n = 10
 
 
 
@@ -222,9 +230,9 @@ power.t.test(n = NULL, delta = 0.5, sd = 1, sig.level = 0.05, power = 0.8)
 
 #~~~~~~~~~ Simulating for a preregistration  -----
 
-# YOUR TURN: 
-## Try to make a dataset that looks like this, using the 
-## functions `data.frame()`, `sample()`, and `rnorm()`    
+# YOUR TURN:
+## Try to make a dataset that looks like this, using the
+## functions `data.frame()`, `sample()`, and `rnorm()`
 
 # smoking_status lung_cancer sex      age
 # 1            Yes          No   M 12.67918
@@ -240,7 +248,7 @@ power.t.test(n = NULL, delta = 0.5, sd = 1, sig.level = 0.05, power = 0.8)
 
 # YOUR TURN:
 ## Run a logistic regression on the data with lung cancer as the outcome and
-## adjusting for the other variables. 
+## adjusting for the other variables.
 ## You could try something like:
 ## glm(lung_cancer ~ smoking_status + sex + age, family = binomial(link = "logit"), data = df)
 ## Why doesn't it work? Try to trouble shoot and get the code to work!
