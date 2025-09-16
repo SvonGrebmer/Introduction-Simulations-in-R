@@ -70,12 +70,13 @@ hist(replicate(10, mean(rnorm(100))))
 
 # YOUR TURN: generate random numbers, repeat, and plot
 ## Replicate 1000 times the mean of 10 values drawn from a uniform distribution between 0 and 10
+p <- replicate(1000, mean(runif(n = 10, min = 0, max = 10)))
+hist(p, breaks = 20)
 
 
 ## Replicate 100 times the mean of 50 values drawn from a normal distribution of mean 10 and standard deviation 5
-
-
-
+p <- replicate(100, mean(rnorm(n = 50, mean = 10, sd = 5)))
+hist(p, breaks = 50)
 
 # set seed
 
@@ -86,7 +87,7 @@ hist(replicate(100, mean(rnorm(10))))
 set.seed(10)
 hist(replicate(100, mean(rnorm(10))))
 
-set.seed(10)
+set.seed(30)
 hist(replicate(100, mean(rnorm(10))))
 
 
@@ -177,12 +178,22 @@ abline(v = 1, col = "red", lty = 2, lwd = 2)
 # YOUR TURN: write a function that takes input "nrep", replicates '(mean(rnorm(100)))'
 # nrep times, and draws a histogram of the results
 
+drawhist <- function(nrep){
+  hist(replicate(nrep, mean(rnorm(100))))
+}
+
+drawhist(10000)
 
 
 # YOUR TURN: modify your function
 ## to draw a histogram of nrep mean(rnorm(n)), where n is another input
 
+drawhist_n <- function(nrep, n){
+  hist(replicate(nrep, mean(rnorm(n))))
+}
 
+# Test
+drawhist_n(nrep = 2000, n = 200)
 
 
 #~~~~~~~~~ Simulating no effect and check alpha -----
